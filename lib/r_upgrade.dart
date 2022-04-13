@@ -221,6 +221,30 @@ class RUpgrade {
     return await _methodChannel!.invokeMethod('getLastUpgradedId');
   }
 
+  /// Android
+  ///
+  /// queryInfoWithId
+  static Future<DownloadInfo?> queryInfoWithId(int id) async {
+    assert(Platform.isAndroid, 'This method only support android application');
+
+     Map? map = await _methodChannel!.invokeMapMethod<String, dynamic>(
+        'queryInfoWithId', {
+      "id": id,
+    });
+    return map != null ? DownloadInfo.formMap(map) : null;
+  }
+
+  /// Android
+  /// getMD5
+  static Future<String?> getMD5(String path) async {
+    assert(Platform.isAndroid, 'This method only support android application');
+
+    String? md5Str = await _methodChannel!.invokeMethod('getMD5', {
+      "path": path,
+    });
+    return md5Str ?? null;
+  }
+
   /// IOS
   ///
   /// [appId] your appId in appStore

@@ -69,6 +69,12 @@ public enum RUpgradeMethodEnum implements IRUpgradeMethodHandler {
                     (Boolean) call.argument("isAutoRequestInstall"), result);
         }
     },
+    queryInfoWithId {
+        @Override
+        public void handler(UpgradeManager upgradeManager, MethodCall call, MethodChannel.Result result) {
+            upgradeManager.queryInfoWithId((Integer) call.argument("id"), result);
+        }
+    },
     getDownloadStatus {
         @Override
         public void handler(UpgradeManager upgradeManager, MethodCall call, MethodChannel.Result result) {
@@ -97,6 +103,13 @@ public enum RUpgradeMethodEnum implements IRUpgradeMethodHandler {
         @Override
         public void handler(UpgradeManager upgradeManager, MethodCall call, MethodChannel.Result result) {
             upgradeManager.getVersionFromAndroidStore((String) call.argument("store"), result);
+        }
+    },
+
+    getMD5{
+        @Override
+        public void handler(UpgradeManager upgradeManager, MethodCall call, MethodChannel.Result result) {
+            upgradeManager.getMD5((String) call.argument("path"), result);
         }
     }
 

@@ -109,12 +109,17 @@ public class UpgradeSQLite extends SQLiteOpenHelper {
             int status = cursor.getInt(cursor.getColumnIndex(STATUS));
             String header = cursor.getString(cursor.getColumnIndex(HEADER));
             int rUpgradeFlavor = cursor.getInt(cursor.getColumnIndex(UPGRADE_FLAVOR));
+            int maxLength = cursor.getInt(cursor.getColumnIndex(MAX_LENGTH));
+            int currentLength = cursor.getInt(cursor.getColumnIndex(CURRENT_LENGTH));
             result.put(PATH, path);
             result.put(APK_NAME, apkName);
             result.put(URL, url);
             result.put(STATUS, status);
             result.put(HEADER, header);
             result.put(UPGRADE_FLAVOR, rUpgradeFlavor);
+            result.put(MAX_LENGTH, maxLength);
+            result.put(CURRENT_LENGTH, currentLength);
+
             return result;
         } else {
             cursor.close();

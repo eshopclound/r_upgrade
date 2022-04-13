@@ -472,6 +472,12 @@ public class UpgradeManager extends ContextWrapper {
         }
     }
 
+    public void queryInfoWithId(final Integer id, final MethodChannel.Result methodResult) {
+        final Map<String, Object> infoMap = UpgradeSQLite.getInstance(this).queryById(id);
+        methodResult.success(infoMap);
+    }
+
+
     public Integer getDownloadStatus(Integer id) {
         return UpgradeSQLite.getInstance(this).queryStatusById(id);
 
@@ -557,6 +563,19 @@ public class UpgradeManager extends ContextWrapper {
                 break;
         }
     }
+
+    public void getMD5(String path, final MethodChannel.Result result) {
+        try {
+            File file = new File(path);
+            String md5 = MD5.calculateMD5(file);
+            result.success(md5);
+        } catch(Exception e) {
+            result.error("-2", e.toString(), null);
+        }
+    }
+
+
+
 }
 
 
