@@ -93,8 +93,8 @@ public class RUpgradePlugin implements FlutterPlugin, ActivityAware {
 
     @Override
     public void onDetachedFromActivity() {
-        Intent intent = new Intent(flutterPluginBinding.getApplicationContext(), UpgradeService.class);
-        flutterPluginBinding.getApplicationContext().stopService(intent);
+//        Intent intent = new Intent(flutterPluginBinding.getApplicationContext(), UpgradeService.class);
+//        flutterPluginBinding.getApplicationContext().stopService(intent);
         if (upgradeManager != null) {
             upgradeManager.dispose();
             upgradeManager = null;
