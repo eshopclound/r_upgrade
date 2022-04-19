@@ -82,7 +82,11 @@ public class UpgradeManager extends ContextWrapper {
 
 
     public void dispose() {
-        unregisterReceiver(downloadReceiver);
+        try {
+            unregisterReceiver(downloadReceiver);
+        } catch (Exception e) {
+            RUpgradeLogger.get().d(TAG, e.toString());
+        }
     }
 
     public UpgradeManager(Activity base, MethodChannel channel, StoragePermissions storagePermissions, StoragePermissions.PermissionsRegistry permissionsRegistry) {
