@@ -139,6 +139,10 @@ public class UpgradeService extends Service {
     }
 
     private void handleNetworkChange(boolean isConnected) {
+        if (runnable == null) {
+            return;
+        }
+        
         if (isConnected) {
             RUpgradeLogger.get().d(TAG, "onReceive: 当前网络正在连接");
             if (isFirst) {
